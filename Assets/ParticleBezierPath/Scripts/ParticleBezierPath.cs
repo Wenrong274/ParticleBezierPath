@@ -3,7 +3,7 @@
 namespace hyhy
 {
     [RequireComponent(typeof(ParticleSystem))]
-    public class ParticlePath : MonoBehaviour
+    public class ParticleBezierPath : MonoBehaviour
     {
         [SerializeField] private Transform[] paths;
         private ParticleSystem particle;
