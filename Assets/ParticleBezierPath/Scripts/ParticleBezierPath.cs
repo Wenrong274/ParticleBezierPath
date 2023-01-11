@@ -5,9 +5,9 @@ namespace hyhy
     [RequireComponent(typeof(ParticleSystem))]
     public class ParticleBezierPath : MonoBehaviour
     {
-        [SerializeField] private Transform[] paths;
+        public Transform[] paths;
         private ParticleSystem particle;
-        private float[] singu;
+       [SerializeField] private float[] singu;
 
         void Start()
         {
@@ -18,27 +18,6 @@ namespace hyhy
         private void Update()
         {
             Trail();
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (paths.Length > 0)
-            {
-                Gizmos.color = Color.blue;
-                if (paths[0])
-                {
-                    Gizmos.DrawLine(transform.position, paths[0].position);
-                    Gizmos.DrawSphere(paths[0].position, 1);
-                }
-                for (int i = 1; i < paths.Length; i++)
-                {
-                    if (paths[i])
-                    {
-                        Gizmos.DrawLine(paths[i - 1].position, paths[i].position);
-                        Gizmos.DrawSphere(paths[i].position, 1);
-                    }
-                }
-            }
         }
 
         private void Trail()
@@ -62,7 +41,7 @@ namespace hyhy
                 for (int k = 0; k < singu.Length; k++)
                 {
                     float f = singu[k];
-                    if (p[i].remainingLifetime < ((f * p[i].startLifetime) / ListLen2))
+                    if (p[i].remainingLifetime < (f * p[i].startLifetime / ListLen2))
                     {
                         b = true;
                         break;
@@ -94,7 +73,6 @@ namespace hyhy
 
                             Vector3 D1 = Dis_List[ID - 1], D2 = Dis_List[ID];
                             p[i].velocity = ListLen / p[i].startLifetime * Bezier(D1, D2, t);
-
                             break;
                         }
                     }
@@ -110,18 +88,18 @@ namespace hyhy
 
         private float[] SinguList(int value)
         {
-            int c = 0;
-            float[] Singu = new float[value / 2];
+            int count = 0;
+            float[] result = new float[value / 2];
 
             for (int i = 0; i < value; i++)
             {
-                if (i % 2 == 1 && !(i == 1))
+                if (i % 2 == 1 && i != 1)
                 {
-                    Singu[c] = (float)i;
-                    c++;
+                    result[count] = i;
+                    count++;
                 }
             }
-            return Singu;
+            return result;
         }
 
         private Vector3 Bezier(Vector3 P0, Vector3 P2, float t)
