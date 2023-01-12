@@ -979,6 +979,7 @@ GameObject:
   - component: {fileID: 1945363926}
   - component: {fileID: 1945363925}
   - component: {fileID: 1945363924}
+  - component: {fileID: 1945363928}
   m_Layer: 0
   m_Name: Particle System A
   m_TagString: Untagged
@@ -998,18 +999,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d29162f26ff56a4b977f5b4f9d4689c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paths:
+  controlPoints:
   - {fileID: 213794886}
   - {fileID: 1979216241}
   - {fileID: 820580005}
   - {fileID: 2109206570}
   - {fileID: 1762273996}
-  singu:
-  - 3
-  - 5
-  - 7
-  - 9
-  - 0
+  bezierPointIndices: []
+  IsJob: 1
 --- !u!199 &1945363925
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -1653,7 +1650,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5832,6 +5829,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945363928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945363923}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54de6c7a97b5ffe48999cc9a5357bd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlPoints:
+  - {fileID: 213794886}
+  - {fileID: 1979216241}
+  - {fileID: 820580005}
+  - {fileID: 2109206570}
+  - {fileID: 1762273996}
+  bezierPointIndices:
+  - 3
+  - 5
+  - 7
+  - 9
+  - 0
 --- !u!1 &1979216240
 GameObject:
   m_ObjectHideFlags: 0

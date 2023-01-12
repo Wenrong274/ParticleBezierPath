@@ -6,12 +6,12 @@ public class ParticleBezierPath_GCP : MonoBehaviour
 {
     public Transform[] controlPoints;
     private ParticleSystem particle;
-    private float[] bezierPointIndices;
+    [SerializeField] private float[] bezierPointIndices;
 
     void Start()
     {
         particle = GetComponent<ParticleSystem>();
-        bezierPointIndices = GenerateBezierPointIndices(controlPoints.Length);
+        bezierPointIndices = GenerateBezierPointIndices(controlPoints.Length * 2);
     }
 
     private void Update()
@@ -21,21 +21,21 @@ public class ParticleBezierPath_GCP : MonoBehaviour
 
     private void UpdateParticleVelocities()
     {
-        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particle.particleCount];
-        int particleCount = particle.GetParticles(particles);
-
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particle.particleCount + 1];
         Vector3[] pointDeltas = new Vector3[controlPoints.Length];
+        int particleCount = particle.GetParticles(particles);
         pointDeltas[0] = controlPoints[0].position - transform.position;
+
         for (int i = 1; i < controlPoints.Length; i++)
         {
             pointDeltas[i] = controlPoints[i].position - controlPoints[i - 1].position;
         }
+
         for (int i = 0; i < particleCount; i++)
         {
             float remainingLifetimeRatio = particles[i].remainingLifetime / particles[i].startLifetime;
             int bezierPointIndex = GetBezierPointIndex(remainingLifetimeRatio);
             float t = GetInterpolationRatio(remainingLifetimeRatio, bezierPointIndex);
-
             Vector3 D1 = pointDeltas[bezierPointIndex - 1], D2 = pointDeltas[bezierPointIndex];
             particles[i].velocity = (1f / controlPoints.Length) * GetBezierPoint(D1, D2, t);
         }

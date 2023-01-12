@@ -14,7 +14,7 @@ namespace hyhy
         private void OnEnable()
         {
             m_particleBezierPath = (ParticleBezierPath)target;
-            m_particleNodes = m_particleBezierPath.paths;
+            m_particleNodes = m_particleBezierPath.controlPoints;
         }
 
         public override void OnInspectorGUI()
