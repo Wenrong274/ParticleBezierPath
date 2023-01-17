@@ -15,5 +15,5 @@
 ## [GitHub][github]
 
 _____________________________________________________________________________
-[demogif]:https://i.imgur.com/tNmcGdz.gif
+[demogif]:https://imgur.com/lfos4S0.gif
 [github]:https://github.com/Wenrong274/ParticleBezierPath
