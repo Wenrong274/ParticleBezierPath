@@ -12,6 +12,7 @@ namespace hyhy
         public NativeArray<float> bezierPointIndices;
         [ReadOnly]
         public NativeArray<Vector3> pointDeltas;
+        [ReadOnly]
         public float lifetime;
 
         public void Execute(ParticleSystemJobData particles)
